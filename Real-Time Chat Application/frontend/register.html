@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - Chat App</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+  <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-6 text-center">Register for Chat App</h2>
+    <form id="registerForm" class="space-y-4">
+      <div>
+        <label for="name" class="block text-sm font-medium">Name</label>
+        <input type="text" id="name" class="mt-1 p-2 w-full border rounded" required />
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium">Email</label>
+        <input type="email" id="email" class="mt-1 p-2 w-full border rounded" required />
+      </div>
+      <div>
+        <label for="password" class="block text-sm font-medium">Password</label>
+        <input type="password" id="password" class="mt-1 p-2 w-full border rounded" required />
+      </div>
+      <div>
+        <label for="confirmPassword" class="block text-sm font-medium">Confirm Password</label>
+        <input type="password" id="confirmPassword" class="mt-1 p-2 w-full border rounded" required />
+      </div>
+      <button type="submit" class="w-full bg-green-500 text-white py-2 rounded">Register</button>
+      <p class="text-sm mt-2 text-center">Already have an account? <a href="login.html" class="text-blue-600 hover:underline">Login</a></p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      const res = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password, confirmPassword })
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        alert("Registered successfully. You can now log in.");
+        window.location.href = "login.html";
+      } else {
+        alert(data.msg || "Registration failed");
+      }
+    });
+  </script>
+</body>
+</html>

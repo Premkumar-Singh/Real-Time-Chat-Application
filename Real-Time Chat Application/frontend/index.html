@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat App</title>
+  <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+  <script defer src="script.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <div id="sidebarMenu" class="bg-white w-64 p-4 border-r overflow-y-auto hidden sm:block">
+      <div class="bg-gray-100 rounded-lg p-3 mb-4">
+        <h2 class="text-lg font-semibold mb-2">👥 Your Contacts</h2>
+        <ul id="contactList" class="space-y-2"></ul>
+        <button onclick="loadContacts()" class="text-blue-600 hover:underline mt-2">🔄 Refresh Contacts</button>
+        <button onclick="toggleAddContact()" class="text-green-600 hover:underline mt-2">➕ Add Contact</button>
+
+<div id="addContactForm" class="hidden mt-2">
+  <input id="contactEmail" class="border p-1 w-full mb-2 rounded" placeholder="User Email" />
+  <button onclick="addContact()" class="text-green-700 hover:underline">Add</button>
+</div>
+
+      </div>
+      <div class="bg-gray-100 rounded-lg p-3">
+        <h2 class="text-lg font-semibold mb-2">👨‍👩‍👧‍👦 Your Groups</h2>
+        <ul id="groupList" class="space-y-2"></ul>
+        <button onclick="loadGroups()" class="text-blue-600 hover:underline mt-2">🔄 Refresh Groups</button>
+        <button onclick="toggleCreateGroup()" class="text-green-600 hover:underline mt-2">➕ Create Group</button>
+
+        <div id="createGroupForm" class="hidden mt-2">
+          <input id="groupName" class="border p-1 w-full mb-1 rounded" placeholder="Group Name" />
+          <button onclick="createGroup()" class="text-green-700 hover:underline">Create</button>
+        </div>
+        
+        <button onclick="toggleJoinGroup()" class="text-green-600 hover:underline mt-2">🔗 Join a Group</button>
+
+        <div id="JoinGroupForm" class="hidden mt-2">
+          <input id="joinGroupId" class="border p-1 w-full mb-2 rounded" placeholder="Enter Group Join ID" />
+          <button onclick="joinGroup()" class="text-blue-600 hover:underline">Join Group</button>
+        </div>
+        
+      </div>
+
+    <div class="bg-gray-100 rounded-lg p-3 mt-4">
+  <h2 class="text-lg font-semibold mb-2">💬 Chat Room</h2>
+  <input id="joinRoom" class="border p-1 w-full mb-2 rounded" placeholder="Enter Room ID" />
+  <button onclick="openRoomChat()" class="text-blue-600 hover:underline">Join Room</button>
+</div>
+    </div>
+
+    <!-- Main Chat Area -->
+    <div class="flex-1 flex flex-col">
+      <!-- Header -->
+      <div class="flex items-center justify-between bg-white px-4 py-2 border-b">
+        <button onclick="toggleSidebar()" class="sm:hidden">☰</button>
+        <div>
+          <h2 id="chatHeaderName" class="text-lg font-semibold">Chat</h2>
+          <p id="chatStatus" class="text-sm text-gray-500">Status</p>
+        </div>
+        <div class="relative">
+          <button onclick="toggleProfileBox()">👤</button>
+          <div id="profileBox" class="absolute right-0 mt-2 bg-white border shadow rounded p-3 hidden">
+            <p><strong>Name:</strong> <span id="profileName"></span></p>
+            <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+            <button onclick="logout()" class="mt-2 bg-red-500 text-white px-3 py-1 rounded">Logout</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div id="messages" class="flex-1 overflow-y-auto p-4 space-y-2 bg-gray-50"></div>
+
+      <!-- Input -->
+      <div class="bg-white px-4 py-3 border-t flex gap-2">
+        <input id="msg" class="flex-1 border p-2 rounded" placeholder="Type a message..." oninput="notifyTyping()" />
+        <button onclick="sendMessage()" class="bg-blue-500 text-white px-4 py-2 rounded">Send</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
