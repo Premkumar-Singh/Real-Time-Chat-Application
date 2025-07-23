@@ -91,4 +91,4 @@ A full-featured browser-based chat application that enables real-time messaging 
 
 ## 📷 Screenshots
 
-> check all screenshots in git repository 
+> check all screenshots in git repository click here https://github.com/Premkumar-Singh/Real-Time-Chat-Application/tree/main/ScreenShots
