@@ -91,7 +91,13 @@ A full-featured browser-based chat application that enables real-time messaging 
 
 ## 📷 Screenshots
 
-> check all screenshots in git repository click here https://github.com/Premkumar-Singh/Real-Time-Chat-Application/tree/main/ScreenShots
+> - Private Chat UI
+> - <img width="1920" height="1080" alt="message and chat view" src="https://github.com/user-attachments/assets/8b7c2f58-eafb-41e5-bee1-7dd19ea85508" />
+
+> - Group Chat UI
+> - <img width="1920" height="1080" alt="group chat screen" src="https://github.com/user-attachments/assets/ce371b2c-e7ef-49ff-a6d9-cbdc7df95ab9" />
+
+>   for more click here https://github.com/Premkumar-Singh/Real-Time-Chat-Application/tree/main/ScreenShots
 
 
 ---
